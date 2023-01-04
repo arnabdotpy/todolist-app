@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" type="image/x-icon" href="/img/logo.png">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-home">
+            <li><a href="/">Todo List</a></li>
+        </div>
+        <div class="nav-btns">
+            <li class="padding-class"><a href="/Work">Work</a></li>
+            <li class="padding-class"><a href="/Home">Home</a></li>
+            <li class="padding-class"><a href="/School">School</a></li>
+        </div>  
+    </nav>
+    <div class="box" id="heading">
+        <h1><%=listTitle%></h1>
+    </div>
+    <div class="box">
+        <ul class="classUL">
+           
+
+            <% newListItems.forEach(item => { %>
+                <form action="/delete" method="post" >
+                    <div class="item checkBox">
+                        <label class="container"><input name="checkbox" value="<%= item._id %>" onchange="this.form.submit()" type="checkbox"><span class="checkmark"></span></label>
+                        <p> <%= item.name %> </p>
+                    </div>
+                    <input type="hidden" name="listName" value="<%= listTitle %>">
+                </form>
+            <% }); %>
+        </ul>
+        <form class="item fromClass" action="/" method="post">
+            <input class="inputText" type="text" name="newItem" placeholder="add to todo list" autocomplete="off">
+            <div class="btn-circle">
+                <button type="submit" name="list" value="<%= listTitle %>">+</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
